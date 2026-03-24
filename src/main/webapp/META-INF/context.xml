@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/Tasker">
+	<Resource name="jdbc/HikariDB"
+			auth="Container"
+			type="javax.sql.DataSource"
+			factory="com.zaxxer.hikari.HikariJNDIFactory"
+			driverClassName="org.mariadb.jdbc.Driver"
+			jdbcUrl="jdbc:mariadb://cybernetrix.shop:3306/tasker"
+			username="yash"
+			password="yash"
+			maximumPoolSize="10"
+			minimumIdle="5"
+			idleTimeout="600000"
+			connectionTimeout="30000"
+			keepaliveTime="30000"
+			maxLifeTimeout="1800000" />
+	<!--
+	<Resource name="jdbc/HikariDB"
+			auth="Container"
+			type="javax.sql.DataSource"
+			factory="com.zaxxer.hikari.HikariJNDIFactory"
+			driverClassName="com.mysql.cj.jdbc.Driver"
+			jdbcUrl="jdbc:mysql://localhost:3306/mydb"
+			username="root"
+			password="password"
+			maximumPoolSize="10"
+			minimumIdle="2"
+			idleTimeout="30000"
+			connectionTimeout="30000" />
+	-->
+</Context>

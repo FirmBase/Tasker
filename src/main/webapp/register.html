@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Login</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet" />
+		<link type="text/css" href="/Tasker/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+		<script type="text/javascript" src="/Tasker/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<style type="text/css">
+			* {
+				font-family: "Montserrat", "sans-serif";
+			}
+			body {
+				background: url("/Tasker/media/97a24464c6f84fcca08abbaf13f4f926c0785ec329294608b6fb66c8462a4728044a8fcbd86348f08356de624a9825a4.jpg");
+				background-position: center;
+				/* background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%); */
+			}
+		</style>
+		<script type="text/javascript">
+			function checkUsernameAvailability() {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if ((this.readyState == 4) && (this.status == 200)) {
+						var responseText = this.responseText;
+						[].forEach.call(window.document.getElementsByTagName("button"), function(button) {
+							var username = window.document.getElementById("username");
+							if (responseText == "unavailable") {
+								button.disabled = true;
+								if (!username.classList.contains("bg-danger"))
+									username.classList.add("bg-danger");
+							}
+							else if (responseText == "available") {
+								button.disabled = false;
+								if (username.classList.contains("bg-danger"))
+									username.classList.remove("bg-danger")
+							}
+						});
+					}
+				}
+				xhttp.open("POST", "/Tasker/Check/Username/", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+				xhttp.send("username=" + window.document.getElementById("username").value);
+			}
+			window.addEventListener("load", function() {
+				window.document.getElementById("username").addEventListener("focusout", function() {
+					checkUsernameAvailability();
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<h1 class="h1 text-center p-5 text-white">Register</h1>
+			</div>
+			<div style="background-color: rgba(0, 0, 0, 0.2);" class="p-3">
+				<form method="post" action="/Tasker/Register/" enctype="application/x-www-form-urlencoded">
+					<div class="row">
+						<div class="col-4 form-floating mx-auto my-3">
+							<input class="form-control" type="text" name="username" id="username" placeholder="Username" id="username-input" aria-label="Username" required autofocus />
+							<label for="username-input">Username</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4 form-floating mx-auto my-3">
+							<input class="form-control" type="email" name="email" placeholder="Username" id="email-input" aria-label="Email" required autofocus />
+							<label for="email-input">Email</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4 form-floating mx-auto my-3">
+							<input class="form-control" type="password" name="password" placeholder="Password" id="password-input" aria-label="Password" required />
+							<label for="password-input">Password</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4 form-floating mx-auto my-3">
+							<input class="form-control" type="password" name="confirm-password" placeholder="Confirm password" id="confirm-password-input" aria-label="Confirm password" required />
+							<label for="confirm-password-input">Confirm password</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group d-flex justify-content-center">
+							<button type="submit" class="btn btn-outline-secondary" disabled>Register</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
