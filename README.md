@@ -1,8 +1,12 @@
 # Tasker
 
+## Build Schema
+
+Execute SQL script in `Countries.sql` and `Tasker.sql`.
+
 ## Intial Configuration
 
-Change appropriate chages in Configuration.java.
+Change appropriate changes in Configuration.java.
 
 ## Build
 
@@ -12,4 +16,4 @@ mvn.cmd package -f pom.xml
 
 ## Deploy in tomcat
 
-Placed Tasker.war file in Tomcat/webapps
+Placed Tasker.war file in Tomcat/webapps.
